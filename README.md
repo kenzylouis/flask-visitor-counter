@@ -43,6 +43,11 @@ Models Dicsovery for Migrations (VERY IMP.)
 need to do ```from counter.models import Counter``` in the views file im order for the app to be able to create migrations to the DB - Link the views(controller) and Models.
 
 for the the 1st time ```flask db init```
+then ```flask db migrate```
+then ```flask db upgrade```
+
+
+here are
 
 
 
