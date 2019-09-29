@@ -40,5 +40,9 @@ Migrate to database using flask-migrate -  there are 4 command to remember
 Models Dicsovery for Migrations (VERY IMP.)
 "You need to be apble to see the models from your application.py
 
+need to do ```from counter.models import Counter``` in the views file im order for the app to be able to create migrations to the DB - Link the views(controller) and Models.
+
+for the the 1st time ```flask db init```
+
 
 
