@@ -50,7 +50,7 @@ then ```flask db upgrade```
 
 Steps 5
 --------
-perfrom Database operations from the shell (CRUD)
+# Perform Database operations from the shell (CRUD)
 
 ```flask shell```
 perform CRUD operations. Through the SQLAlchemy you can perform query to the DB
@@ -64,7 +64,7 @@ counter is a representation of the DB
 
 ## Create a record into the DB
 
-To right our 1st record in the DB:
+To write our 1st record in the DB:
 ```counter = Counter(count=1)```
 
 but this value is not in the DB yet. SQLAlchemy has this concept of a session
@@ -82,7 +82,7 @@ now check the counter table
 ```counter.id```
 
 ## Read a record from the DB
-### by ID
+### By ID
 
 ```python
 counter_1 = Counter.query.get(1)
@@ -94,7 +94,7 @@ the return value `<Count 1>` is the __repr__ of our class Counter
 we can also get the value of count
 ```counter_1.count```
 
-### query all
+### Query all
 we can query all like this:
 ```python
 counter_list = Counter.query.all()
