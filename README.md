@@ -139,3 +139,15 @@ db.session.commit()
 ```
 verify DB is empty
 `Counter.query.all()`
+
+Steps 6
+-------
+
+Create the page views for the application
+
+* had to install cryptography because of the following error:
+
+`RuntimeError: cryptography is required for sha256_password or caching_sha2_password`
+
+did a : `pip install cryptography`
+
