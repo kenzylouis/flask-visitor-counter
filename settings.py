@@ -7,3 +7,5 @@ DB_HOST = os.environ['DB_HOST']
 DATABASE_NAME = os.environ['DATABASE_NAME']
 DB_URI = 'mysql+pymysql://%s:%s@%s:3306/%s' % (DB_USERNAME, DB_PASSWORD, DB_HOST, DATABASE_NAME)
 SQLALCHEMY_DATABASE_URI = DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS=True # SQL Alchemy can complain not finding test DB
+MYSQL_ROOT_PASSWORD=os.environ['MYSQL_ROOT_PASSWORD']
