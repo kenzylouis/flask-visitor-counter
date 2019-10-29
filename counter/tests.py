@@ -31,3 +31,14 @@ class CounterTest(unittest.TestCase):
         with self.app_factory.app_context():
             db.drop_all()
         self.test_db.drop_db()
+
+    def test_counter(self):
+        rv = self.app.get('/')
+        assert '1' in str(rv.data)
+        rv = self.app.get('/')
+        assert '2' in str(rv.data)
+
+    # this will fail
+    # def test_client_2(self):
+    #     rv = self.app.get('/')
+    #     assert '2' in str(rv.data)

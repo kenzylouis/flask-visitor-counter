@@ -8,13 +8,13 @@ class TestDB:
         self.db_root_password = os.environ['MYSQL_ROOT_PASSWORD']
 
         if self.db_root_password:
-            self.db.username = 'root'
-            self.db.password = self.db_root_password
+            self.db_username = 'root'
+            self.db_password = self.db_root_password
         else:
-            self.db.username = os.environ['DB_USERNAME']
-            self.db.password = os.environ['DB_PASSWORD']
+            self.db_username = os.environ['DB_USERNAME']
+            self.db_password = os.environ['DB_PASSWORD']
         
-        self.db_uri = 'mysql+pymsql://%s:%s@%s' % (self.db_username, self.db_password, self.db_host)
+        self.db_uri = 'mysql+pymysql://%s:%s@%s' % (self.db_username, self.db_password, self.db_host)
 
     def create_db(self):
         # create the db if root user
@@ -24,6 +24,13 @@ class TestDB:
             conn.execute("COMMIT")
             conn.execute("CREATE DATABASE " + self.db_name)
             conn.close()
+        else:
+            engine = sqlalchemy.create_engine(self.db_uri)
+            conn = engine.connect()
+            conn.execute("COMMIT")
+            conn.execute("CREATE DATABASE " + self.db_name)
+            conn.close()
+
 
         return self.db_uri + '/' + self.db_name
 
@@ -34,5 +41,11 @@ class TestDB:
             conn = engine.connect()
             conn.execute("COMMIT")
             conn.execute("DROP DATABASE" + self.db_name)
+            conn.close()
+        else:
+            engine = sqlalchemy.create_engine(self.db_uri)
+            conn = engine.connect()
+            conn.execute("COMMIT")
+            conn.execute("DROP DATABASE " + self.db_name)
             conn.close()
 

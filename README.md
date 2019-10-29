@@ -169,9 +169,18 @@ and inside my app folder, there is a tests.py file that test the application
 
 create a test class in the test file. test files are organized by classes with corresponding tests. we can have more than 1 classes
 
-we have requiered method like `setup` and `teardown`, providing fresh version of the app for each type of test
+we have requiered method like `setUp` and `tearDown`, providing fresh version of the app for each type of test
 - instantiate the Test DB with the utility, and get the conn from it
 - create an instance of the app and store it in an app factory. This is another create_app method with the setting overrides of the test
 - `TESTING = True`:  in testing mode, flask disables the error catching during request handling for better error reports when performing test request against the app, that increase perfomrance too. The SQL alchemy db uri is the one returned by our test db utility. once we have the factory we create the app
-- sql aclhemy provides method to create app tables without using migrations: create_all() and drop_all()
-- app_context(): simulates all that is in the with block as if we were in Flask and execute the code like flask run. All operations in a view are in the app_context()
+- sql aclhemy provides method to create app tables without using migrations: `create_all()` and `drop_all()`
+- `app_context()`: simulates all that is in the with block as if we were in Flask and execute the code like flask run. All operations in a view are in the `app_context()`
+
+Step 8
+------
+
+each needs to begin with `test_` so that the unittest library can run the `setUp` and `tearDown` before and after it
+
+This is what test boiles down to: asserting or making sure that something we are expecting to be happening is happening. if the result is false, the test is not passing
+
+add the tests.py file under the root folder. It will automatically discover all the tests.py file in all the app folders in the application
