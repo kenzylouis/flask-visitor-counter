@@ -151,3 +151,27 @@ Create the page views for the application
 
 did a : `pip install cryptography`
 
+Step 7
+------
+
+## Testing suite for the app
+modify the application.py to add overrides to the app so we can overrides the settings when running the test
+
+Add KW Args call `**config_overrides`, then update app.config
+
+Why do we need a separate DB for the test? so we don't mess up the existing main DB, also we want the code to run with fresh data every time we run the test, to avoid having left over data that mess up the validity of the test case 
+
+we also want utility script that does that for us so we don't have to repeat code in our app
+
+it creates and drop a test DB, test_db.py
+
+and inside my app folder, there is a tests.py file that test the application
+
+create a test class in the test file. test files are organized by classes with corresponding tests. we can have more than 1 classes
+
+we have requiered method like `setup` and `teardown`, providing fresh version of the app for each type of test
+- instantiate the Test DB with the utility, and get the conn from it
+- create an instance of the app and store it in an app factory. This is another create_app method with the setting overrides of the test
+- `TESTING = True`:  in testing mode, flask disables the error catching during request handling for better error reports when performing test request against the app, that increase perfomrance too. The SQL alchemy db uri is the one returned by our test db utility. once we have the factory we create the app
+- sql aclhemy provides method to create app tables without using migrations: create_all() and drop_all()
+- app_context(): simulates all that is in the with block as if we were in Flask and execute the code like flask run. All operations in a view are in the app_context()
